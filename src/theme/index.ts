@@ -6,6 +6,8 @@ import { colors, theme } from "./colors";
 
 const fonts = {
   ...chakraTheme.fonts,
+  body: "Roboto",
+  heading: "Oswald",
 };
 
 const breakpoints = createBreakpoints({

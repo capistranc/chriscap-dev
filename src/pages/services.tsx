@@ -1,9 +1,5 @@
-import { Layout } from "../layouts/Layout";
+import { ServicesPage } from "../layouts/Services";
 
-export default function Services() {
-  return (
-    <Layout title="Services" description="See what services we offer">
-      Services{" "}
-    </Layout>
-  );
+export default function Services({}) {
+  return <ServicesPage></ServicesPage>;
 }

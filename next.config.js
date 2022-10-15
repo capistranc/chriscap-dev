@@ -1,8 +1,18 @@
-/** @type {import('next').NextConfig} */
+require("dotenv").config();
+
 module.exports = {
   env: {
-    EmailJS_ID: "user_4LtQ3LRB7J6d60KxeHQuY",
-    EmailJS_Token: "089dcdd07fb34862435ba6141d325ff9",
-    GTAG_ID: "GTM-PT4WG68",
+    EmailJS_ID: process.env.EmailJS_ID,
+    EmailJS_Token: process.env.EmailJS_Token,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 };

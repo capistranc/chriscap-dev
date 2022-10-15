@@ -1,17 +1,19 @@
-import Head from "next/head";
 import { Layout } from "../layouts/Layout";
-
+import { Date } from "../components/Date";
+import { getSortedPostsData } from "../lib/blog";
 import NextLink from "next/link";
 import { NextPage } from "next";
-import { Box, Heading, Link, Stack, Button } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { getPosts } from "../lib/instagram";
 
 export const Portfolio: NextPage = () => {
+  async function clickFn() {
+    // console.log(await getPosts());
+  }
+
   return (
     <Layout title="Portfolio" description="Come see some of our happy clients">
-      <Head>
-        <title>Portfolio</title>
-      </Head>
-      <Button> CLICK FOR ISNTAGRAM STUFF </Button>
+      <Button onClick={clickFn}> EAT FROM ME </Button>
     </Layout>
   );
 };

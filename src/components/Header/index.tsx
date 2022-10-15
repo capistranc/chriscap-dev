@@ -1,18 +1,20 @@
 export const links = [
-  { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/services", label: "Services" },
-  { path: "/portfolio", label: "Portfolio" },
-  { path: "/blog", label: "Blog" },
-  { path: "/contact", label: "Contact Us" },
+	{ path: "/", label: "Home" },
+	{ path: "/about", label: "About me" },
+	{ path: "/services", label: "services" },
+	{ path: "/portfolio", label: "My Work" },
+	{ path: "/blog", label: "Blog" },
+	{ path: "/contact", label: "Contact Me" },
 ];
 
-import { StickyNavHeader } from "./StickyNavHeader";
 import { MorphingNavBar } from "./MorphingNavBar";
 
 export * from "./BannerHeader";
+
 export * from "./Banner";
 
+import { NavBar } from "./NavBar";
+
 export const Header = ({ active = null }) => {
-  return <StickyNavHeader active={active} links={links} />;
+	return <MorphingNavBar active={active} links={links} />;
 };

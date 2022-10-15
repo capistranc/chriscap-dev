@@ -10,25 +10,28 @@ import {
   Spacer,
   Textarea,
   Stack,
-  FormControl,
   Box,
   Text,
   useToast,
   HTMLChakraProps,
+  FormControl,
   FormErrorMessage,
   useColorMode,
 } from "@chakra-ui/react";
 import { theme } from "../../theme";
 import emailJS from "emailjs-com";
+
+import { Logo } from "..";
+
 import { EmailIcon, PhoneIcon, QuestionIcon } from "@chakra-ui/icons";
-import { InLineLabel } from "../Input/InlineLabel";
+import { InLineLabel } from "../Input";
 import { useForm } from "react-hook-form";
 import React from "react";
 import { AlertPop } from "../Popups/AlertPop";
 
-emailJS.init(process.env.EmailJS_ID || "");
+emailJS.init(process.env.EmailJS_ID);
 
-export const ContactForm = (props: HTMLChakraProps<"form">): JSX.Element => {
+export const ContactForm = (props: HTMLChakraProps<"form">) => {
   const {
     handleSubmit,
     register,
@@ -38,13 +41,14 @@ export const ContactForm = (props: HTMLChakraProps<"form">): JSX.Element => {
   const [isSending, setSending] = React.useState(false);
 
   const toast = useToast();
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data) => {
+    // console.log(data);
     setSending(true);
     try {
       const result = await emailJS.send(
         "contact_service",
         "contact_form",
-        data,
+        data
       );
 
       if (result.status === 200) {
@@ -63,6 +67,9 @@ export const ContactForm = (props: HTMLChakraProps<"form">): JSX.Element => {
         });
       }
     } catch (e) {
+      // console.log("WHAT HAPPENED", e);
+
+      // console.log("userId", process.env.EmailJS_ID);
       toast({
         title: `Failed to send: ${e.status}`,
         status: "error",
@@ -233,7 +240,6 @@ export const ContactForm = (props: HTMLChakraProps<"form">): JSX.Element => {
           type="submit"
           width="60%"
           variant="solid"
-          borderRadius="0"
           isLoading={isSubmitting}
           loadingText="Sending..."
         >

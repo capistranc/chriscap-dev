@@ -1,8 +1,10 @@
-import { theme } from "../";
+import { theme } from "..";
+
 export const Heading = {
   // 1. We can update the base styles
-  baseStyle: {
+  baseStyle: (props) => {
     // fontWeight: "bold", // Normally, it is "semibold"
+    color: theme.fg[props.colorMode];
   },
   // 2. We can add a new button size or extend existing
   sizes: {
@@ -14,23 +16,27 @@ export const Heading = {
   },
   // 3. We can add a new visual variant
   variants: {
-    h1: (props) => ({
-      fontFamily: "Open Sans",
-      fontSize: ["32px", "48px", "56px", "64px"],
-      fontWeight: "600",
-      color: theme.h1[props.colorMode],
-    }),
-    h2: (props) => ({
-      fontFamily: "Tangerine",
-      fontSize: ["72px", "96px", "128px", "144px"],
-      fontWeight: "500",
-      color: theme.h2[props.colorMode],
-      mb: -8,
-    }),
-    banner: {
-      fontSize: "96px",
-      color: "white",
-      fontFamily: "Open Sans",
+    "banner-with-border": {
+      //See Parallax5/section3 for usage
+      fontSize: ["5xl", "6xl", "8xl", "9xl"],
+      boxSizing: "border-box",
+      border: "2px solid rgba(255, 255, 255, 0.5)",
+      borderRadius: "8px",
+      px: ["3rem", "8rem", "10rem", "12rem"],
+      py: ["1rem", "1.5rem", "1.75rem", "2rem"],
+    },
+
+    "banner-with-border-md": {
+      //See Parallax5/section3 for usage
+      fontSize: ["4xl", "5xl", "6xl", "7xl"],
+      boxSizing: "border-box",
+      border: "2px solid rgba(255, 255, 255, 0.5)",
+      borderRadius: "8px",
+      px: ["3rem", "8rem", "10rem", "10rem"],
+      py: [".75rem", "1rem", "1.25rem", "1.5rem"],
+    },
+    h2: {
+      fontFamily: "Raleway",
     },
     // 4. We can override existing variants
     // solid: (props) => ({

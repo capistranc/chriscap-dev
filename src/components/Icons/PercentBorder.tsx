@@ -26,7 +26,7 @@ export const PercentBorder = ({ icon, percent, ...props }) => {
             <animate
               attributeName="stroke-dashoffset"
               values={`${percent * 3};0`}
-              dur="1.5s"
+              dur="2s"
             />
           </path>
         </svg>

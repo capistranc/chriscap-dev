@@ -20,3 +20,6 @@ export const MotionBox = motion<BoxProps>(Box);
 export const MotionIcon = motion<IconProps>(Icon);
 export const MotionButton = motion<ButtonProps>(Button);
 export const MotionText = motion<TextProps>(Text);
+
+export * from "./SlideListItem";
+export * from "./LoadingIcon";

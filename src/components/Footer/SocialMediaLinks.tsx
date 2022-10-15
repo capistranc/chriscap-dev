@@ -1,10 +1,4 @@
-import {
-  IconButton,
-  ButtonGroup,
-  ButtonGroupProps,
-  HTMLChakraProps,
-  IconProps,
-} from "@chakra-ui/react";
+import { IconButton, ButtonGroup, ButtonGroupProps } from "@chakra-ui/react";
 import {
   FaGithub,
   FaLinkedin,
@@ -14,46 +8,25 @@ import {
 } from "react-icons/fa";
 import NextLink from "next/link";
 
-// export enum SocialMedia {
-//   github,
-//   linkedin,
-//   instagram,
-//   facebook,
-//   twitter,
-//   tiktok,
-// }
+export enum SocialMedia {
+  github,
+  linkedin,
+  instagram,
+  facebook,
+  twitter,
+  tiktok,
+}
 
-type SocialMediaProps = {
-  socialMediaType: string;
-  href: string;
-};
-
-const SocialMediaLink = ({
-  socialMediaType,
-  href,
-  ...props
-}: SocialMediaProps) => {
-  const icons: any = {
-    github: {
-      label: "Github",
-      icon: <FaGithub />,
-    },
-    linkedin: {
-      label: "LinkedIn",
-      icon: <FaLinkedin />,
-    },
+const SocialMediaLink = ({ socialMediaType, href, ...props }) => {
+  const icons = {
+    github: { label: "Github", icon: (props) => <FaGithub {...props} /> },
+    linkedin: { label: "LinkedIn", icon: (props) => <FaLinkedin {...props} /> },
     instagram: {
       label: "Instagram",
-      icon: <FaInstagram />,
+      icon: (props) => <FaInstagram {...props} />,
     },
-    facebook: {
-      label: "Facebook",
-      icon: <FaGithub />,
-    },
-    twitter: {
-      label: "Twitter",
-      icon: <FaTwitter />,
-    },
+    facebook: { label: "Facebook", icon: (props) => <FaGithub {...props} /> },
+    twitter: { label: "Twitter", icon: (props) => <FaTwitter {...props} /> },
   };
 
   return (
@@ -62,7 +35,7 @@ const SocialMediaLink = ({
         as="a"
         href="#"
         aria-label={icons[socialMediaType].label}
-        icon={icons[socialMediaType].icon}
+        icon={icons[socialMediaType].icon(props)}
       />
     </NextLink>
   );

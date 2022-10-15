@@ -1,9 +1,11 @@
-import { MdPinInvoke } from "react-icons/md";
-
+import { theme } from "..";
 export const Button = {
   // 1. We can update the base styles
   baseStyle: (props) => ({
     // fontWeight: "bold", // Normally, it is "semibold"
+    _hover: {
+      bgColor: theme.border1[props.colorMode],
+    },
   }),
   // 2. We can add a new button size or extend existing
   sizes: {
@@ -16,28 +18,28 @@ export const Button = {
   // 3. We can add a new visual variant
   variants: {
     square: {
-      borderRadius: "0px",
+      borderRadius: "4px",
     },
     // 4. We can override existing variants
     solid: (props) => ({
       color: "white",
-      borderRadius: 0,
+      borderRadius: 4,
       bg: props.colorMode === "dark" ? "teal.700" : "teal.500",
     }),
-    b1: (props) => ({
-      color: "pink.200",
-      bg: "white",
-      borderRadius: 0,
+    btow: (props) => ({
+      color: props.colorMode == "light" ? "white" : "black",
+      bg: props.colorMode == "light" ? "black" : "white",
+      borderRadius: 4,
     }),
-    b2: (props) => ({
-      borderRadius: 0,
+    bb: {
       color: "white",
-      bg: "pink.200",
-    }),
-    b3: (props) => ({
-      borderRadius: 0,
-      color: "white",
-      bg: "blue.500",
-    }),
+      borderRadius: 4,
+      bg: "#000000",
+    },
+    bw: {
+      color: "black",
+      borderRadius: 4,
+      bg: "#FFFFFF",
+    },
   },
 };

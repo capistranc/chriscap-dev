@@ -14,15 +14,15 @@ export const BorderedIconOffset = ({
       borderRadius="full"
       border="4px solid"
       align="center"
-      borderColor={theme.icon2[colorMode]}
+      borderColor={theme.border2[colorMode]}
       {...props}
     >
       <Flex
         border="4px solid"
         borderRadius="full"
-        bg={props.bg || theme.icon2[colorMode]}
+        bg={props.bg || theme.border2[colorMode]}
         color={props.color || theme.fg2[colorMode]}
-        borderColor={props.bg || theme.icon2[colorMode]}
+        borderColor={props.bg || theme.border2[colorMode]}
         boxSize={innerBoxSize}
         align="center"
         justifyContent="center"

@@ -1,53 +1,59 @@
 import { NavBar } from "./NavBar";
-import { Flex, Box, Heading, Text } from "@chakra-ui/react";
+import { Flex, Box, Heading, Text, useColorMode } from "@chakra-ui/react";
 import React, { useRef, useEffect, useState } from "react";
+import { theme } from "../../theme";
+
+let sentinels;
 
 export const MorphingNavBar = ({ links, active = null, ...props }) => {
-  const [isVisible, setVisible] = useState(false);
+	const [isVisible, setVisible] = useState(false);
+	const [thisColor, setColor] = useState("white");
+	const [thisBackground, setBackground] = useState("rgba(0.1,0.1,0.1,0.1");
+	const [thisShadow, setShadow] = useState("none");
 
-  useEffect(() => {
-    let sentinels;
-    const observer = new IntersectionObserver(([entry]) => {
-      setVisible(entry.isIntersecting);
-    });
+	const { colorMode } = useColorMode();
+	const bg = theme.bg[colorMode];
+	const fg = theme.fg[colorMode];
 
-    const delay = setTimeout(() => {
-      sentinels = document.getElementsByClassName("header-sentinel");
+	useEffect(() => {
+		const observer = new IntersectionObserver(([entry]) => {
+			setVisible(entry.isIntersecting);
+			setColor(entry.isIntersecting ? "white" : fg);
+			setBackground(entry.isIntersecting ? "rgba(0.1,0.1,0.1,0.1" : bg);
+			setShadow(entry.isIntersecting ? "none" : "md");
+		});
 
-      if (!sentinels) return;
+		const delay = setTimeout(() => {
+			sentinels = document.getElementsByClassName("header-sentinel");
 
-      for (let i = 0; i < sentinels.length; i++) {
-        observer.observe(sentinels[i]);
-      }
-    }, 500); //Added a delay to give DOM time to render before looking for sentinel
+			if (!sentinels) return;
 
-    return () => {
-      return clearTimeout(delay);
-    };
-  });
+			for (let i = 0; i < sentinels.length; i++) {
+				observer.observe(sentinels[i]);
+			}
+		}, 5000); //Added a delay to give DOM time to render before looking for sentinel
 
-  return (
-    <Box>
-      <Box
-        top="0"
-        as="nav"
-        id="nav"
-        zIndex="sticky"
-        w="100%"
-        position={isVisible ? "absolute" : "fixed"}
-        color={isVisible ? "white" : "black"}
-        bg={isVisible ? "transparent" : "white"}
-        boxShadow={isVisible ? "none" : "2xl"}
-        {...props}
-      >
-        <NavBar
-          links={links}
-          color={props.color}
-          variant="noLogo"
-          // variant={isVisible ? "noLogo" : "default"}
-          active={active}
-        ></NavBar>
-      </Box>
-    </Box>
-  );
+		return () => {
+			return clearTimeout(delay);
+		};
+	});
+
+	return (
+		<Box>
+			<Box
+				top="0"
+				as="nav"
+				id="nav"
+				zIndex="sticky"
+				w="100%"
+				position={isVisible ? "absolute" : "fixed"}
+				color={thisColor}
+				bg={thisBackground}
+				boxShadow={thisShadow}
+				{...props}
+			>
+				<NavBar links={links} color={props.color} active={active}></NavBar>
+			</Box>
+		</Box>
+	);
 };
