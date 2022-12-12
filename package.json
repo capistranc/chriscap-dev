@@ -18,7 +18,7 @@
     "@fontsource/raleway": "^4.5.0",
     "@fontsource/roboto": "^4.5.1",
     "@fontsource/roboto-condensed": "^4.5.0",
-    "axios": "^0.21.1",
+    "axios": "^1.2.1",
     "cors": "^2.8.5",
     "date-fns": "^2.25.0",
     "dotenv": "^10.0.0",
